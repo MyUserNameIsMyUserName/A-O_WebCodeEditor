@@ -45,6 +45,10 @@ npm install -g pngquant-bin
 npm install -g gifsicle
 echo "Done NPM pngquant-bin install."
 
+echo "Starting open-cli install"
+npm install --global open-cli
+echo "Done NPM open-cli install"
+
 read -p "[> EOF::A^O__INSTALL_Process >> Press {enter} to exit...<]"
 
 
