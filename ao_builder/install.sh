@@ -49,6 +49,10 @@ echo "Starting open-cli install"
 npm install --global open-cli
 echo "Done NPM open-cli install"
 
+echo "Starting npm-install-missing install"
+npm install -g npm-install-missing
+echo "Done NPM npm-install-missing install"
+
 read -p "[> EOF::A^O__INSTALL_Process >> Press {enter} to exit...<]"
 
 
