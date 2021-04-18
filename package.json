@@ -10,7 +10,7 @@
     "_build": "bash ao_builder/build.sh ",
     "_build_dev": "bash ao_builder/build.sh dev",
     "_build_and_serve": "npm run _build && npm run _serve ",
-    "_serve": "start node ao_express.js",
+    "_serve": "start node default.server.js",
     "in_": "npm run _install",
     "uni_": "npm run _uninstall",
     "b_": "npm run _build",
@@ -36,8 +36,10 @@
     "babel-loader": "^8.2.2",
     "babel-plugin-remove-comments": "^2.0.0",
     "compression": "^1.7.4",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "livereload": "^0.9.1",
+    "open": "^8.0.6",
     "webpack": "^5.16.0"
   }
 }
