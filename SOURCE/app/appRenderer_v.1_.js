@@ -70,7 +70,7 @@ var appRenderer = {
       element.click();
 
       document.body.removeChild(element);
-    }
+    },
   },
 };
 
