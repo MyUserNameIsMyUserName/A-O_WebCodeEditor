@@ -1,10 +1,14 @@
 // Express
+const open = require('open');
+const dotenv = require('dotenv').config();
 const compression = require("compression");
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 
-const PORT = 8080;
+const PROTOCOL = process.env.PROTOCOL;
+const ORIGIN = process.env.ORIGIN;
+const PORT = process.env.DEFAULT_PORT;
 
 const STATIC = path.resolve(__dirname, "PUBLIC");
 const INDEX = path.resolve(STATIC, "index.html");
@@ -26,5 +30,6 @@ app.get("*", function (req, res) {
 
 // Start server
 app.listen(PORT, function () {
-    console.log("Server up and running on http://localhost:" + PORT + "/");
+    console.log("Server up and running on "+ PROTOCOL + "://" + ORIGIN + ":" + PORT + "/");
+    open(PROTOCOL + "://" + ORIGIN + ":" + PORT + "/");
 });
