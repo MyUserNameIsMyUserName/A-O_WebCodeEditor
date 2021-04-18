@@ -73,6 +73,9 @@ else
     echo "Starting A^O_DOCS DEVELOPMENT Build."
     
     
+    echo "Copy .env.development file into .env"
+    cp .env.development .env
+    
     echo "Trying to remove PUBLIC folders contents [if there is any]"
     rm -r PUBLIC/*
 
