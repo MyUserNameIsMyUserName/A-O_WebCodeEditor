@@ -32,18 +32,25 @@ var appRenderer = {
   func: {
     init() {
       console.log("[ appRenderer.func.init() ]");
+      
       appRenderer.conf.inputElem = document.querySelector(
         appRenderer.conf.inputElemSel
       );
+
       appRenderer.func.getApplication();
+
       appRenderer.conf.inputElem.oninput = function () {
+        hljs.highlightElement(appRenderer.conf.inputElem);
         appRenderer.func.getApplication();
       };
+
       document.getElementById("downloadCodeButton").onclick = function () {
         console.log("[ downloadCodeButton .onclick -> function() ]");
         appRenderer.func.downloadCode();
       };
+
     },
+
     getApplication() {
       var stringJS = appRenderer.conf.inputElem.innerText;
 
@@ -53,6 +60,7 @@ var appRenderer = {
 
       eval(stringJS);
     },
+
     downloadCode() {
       var element = document.createElement("a");
       element.setAttribute(
