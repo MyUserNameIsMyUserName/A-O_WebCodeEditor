@@ -4,7 +4,20 @@
   "description": "A^O_Tools : A^O_WCE as a custom solution for editing JS in browser while seeing the results of it in realtime.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "_install": " npm install && echo |bash A-O_builder-express/ao_builder/install.sh \"",
+    "_uninstall": "bash -c \" rm -r  A-O_builder-express -f && rm -r node_modules -f && rm -r PUBLIC -f && rm package-lock.json \"",
+    "_build": "bash A-O_builder-express/ao_builder/build.sh ",
+    "_build_dev": "bash A-O_builder-express/ao_builder/build.sh dev",
+    "_build_and_serve": "npm run _build && npm run _serve ",
+    "_serve": "start node ao_express.js",
+    "in_": "npm run _install",
+    "uni_": "npm run _uninstall",
+    "b_": "npm run _build",
+    "bs_": "npm run _build_and_serve",
+    "bsd_": "  npm run _serve && nodemon --exec npm run _build_dev --ignore PUBLIC",
+    "_local_tunnel": "npm run ao && start lt --port 8888",
+    "lt_": "npm run _local_tunnel"
   },
   "repository": {
     "type": "git",
@@ -16,5 +29,15 @@
   "bugs": {
     "url": "https://github.com/MyUserNameIsMyUserName/A-O_WebCodeEditor/issues"
   },
-  "homepage": "https://github.com/MyUserNameIsMyUserName/A-O_WebCodeEditor#readme"
+  "homepage": "https://github.com/MyUserNameIsMyUserName/A-O_WebCodeEditor#readme",
+  "dependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "babel-loader": "^8.2.2",
+    "babel-plugin-remove-comments": "^2.0.0",
+    "compression": "^1.7.4",
+    "express": "^4.17.1",
+    "livereload": "^0.9.1",
+    "webpack": "^5.16.0"
+  }
 }
