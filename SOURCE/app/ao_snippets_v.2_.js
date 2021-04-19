@@ -1,3 +1,89 @@
+
+
+
+var appRenderer = {
+  info: {
+    id: "mainAppRenderer",
+    description: "This one is actually doing the render.",
+  },
+  conf: {
+    inputElemSel: "editor_side pre",
+    inputElem: "",
+  },
+  data: {
+    editors: [
+      {
+        id: "fa11cs",
+        editing: [
+          {
+            fileName: "newAppDemo.js",
+            fileLoc: "/e/_DEV_/_YEA/",
+          },
+        ],
+      },
+    ],
+  },
+  func: {
+    init() {
+      console.log("[ appRenderer.func.init() ]");
+      appRenderer.conf.inputElem = document.querySelector(
+        appRenderer.conf.inputElemSel
+      );
+      appRenderer.func.getApplication();
+      appRenderer.conf.inputElem.oninput = function () {
+        appRenderer.func.getApplication();
+      };
+      document.getElementById("downloadCodeButton").onclick = function () {
+        console.log("[ downloadCodeButton .onclick -> function() ]");
+        appRenderer.func.downloadCode();
+      };
+    },
+    getApplication() {
+      var stringJS = appRenderer.conf.inputElem.innerText;
+
+      console.log(stringJS);
+
+      console.log(typeof stringJS);
+
+      eval(stringJS);
+    },
+    downloadCode() {
+      var element = document.createElement("a");
+      element.setAttribute(
+        "href",
+        "data:text/plain;charset=utf-8," +
+          encodeURIComponent(
+            document.querySelector("editor_side pre").innerText
+          )
+      );
+      element.setAttribute("download", "DEMO.js");
+
+      element.style.display = "none";
+      document.body.appendChild(element);
+
+      element.click();
+
+      document.body.removeChild(element);
+    },
+  },
+};
+
+
+
+
+
+
+
+
+
+
+
+
+/////////////////////////////////////////
+//////// FILESYSTEM API PART ///////////
+///////////////////////////////////////
+
+
 // Allow for vendor prefixes.
 window.requestFileSystem =
   window.requestFileSystem || window.webkitRequestFileSystem;
@@ -96,21 +182,20 @@ function displayEntries(entries) {
   entries.forEach(function (entry, i) {
     var li = document.createElement("li");
 
-    var link = document.createElement("a");
-    link.innerHTML = entry.name;
-    link.className = "edit-file";
-    li.appendChild(link);
 
-    var delLink = document.createElement("a");
+    var entryName = document.createElement("p");
+    entryName.innerHTML = entry.name;
+    li.appendChild(entryName);
+
+    var delLink = document.createElement("button");
     delLink.innerHTML = "[x]";
-    delLink.className = "delete-file";
     li.appendChild(delLink);
 
     fileList.appendChild(li);
 
     // Setup an event listener that will load the file when the link
     // is clicked.
-    link.addEventListener("click", function (e) {
+    li.addEventListener("click", function (e) {
       e.preventDefault();
       loadFile(entry.name);
     });
@@ -118,6 +203,7 @@ function displayEntries(entries) {
     // Setup an event listener that will delete the file when the delete link
     // is clicked.
     delLink.addEventListener("click", function (e) {
+      e.stopPropagation();
       e.preventDefault();
       deleteFile(entry.name);
     });
@@ -212,3 +298,21 @@ if (window.requestFileSystem) {
 } else {
   alert("Sorry! Your browser doesn't support the FileSystem API :(");
 }
+
+
+
+
+/////////////////////////////////////////////////
+////////EO!  FILESYSTEM API PART  !EO///////////
+///////////////////////////////////////////////
+
+
+//////////////////////
+/// SOME ADDITIONAL TRIGGERING AND SHIT
+
+appRenderer.func.init();
+
+window.onload = function () {
+  hljs.highlightElement(appRenderer.conf.inputElem);
+  console.log("YEAA HAVING FUN! :D");
+};
