@@ -174,17 +174,17 @@ ao_snippets {
     button {
       background: #03a9f4;
       box-shadow: 0 2px 5px black;
-      font-size: 1.2em;
+      font-size: 1.1em;
       line-height: 1em;
-      padding: 0.75em 2em;
+      padding: 0.5em 1em;
       border-radius: 0;
       border: 4px solid transparent;
-      border-radius: 30px;
       transition: 0.25s ease all;
+      margin: 0.25em 0;
 
       &:hover {
         border-radius: 0;
-        box-shadow: 0 5px 10px #0fa7ed;
+        box-shadow: 0 5px 10px black;
         background: gray;
         border-bottom-color: #11a7eb;
       }
@@ -193,6 +193,13 @@ ao_snippets {
         transition: 0.05s ease all;
         box-shadow: 0 0 1px white;
         background: #11a7eb;
+      }
+
+      &:disabled {
+        background: rgba(0,0,0,0.35);
+        cursor: not-allowed;
+        border: revert;
+        color: #455a64;
       }
     }
 
