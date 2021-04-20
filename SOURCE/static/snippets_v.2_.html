@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>A^O_Snippets : Fastest way to play with JS</title>
+    <link href="/assets/css/inputs_default.css" rel="stylesheet" />
+    <link href="/assets/css/ao_snippets_v.2.css" rel="stylesheet" />
+    <link href="/assets/css/ao_snippets_v.2.code.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+  </head>
+  <body>
+    <ao_snippets>
+      <ao_header>
+        <ao_title>
+          <h1> A^O_Snippets </h1>
+          <icon>i</icon>
+          <button title="Open Options">[_]</button>
+        </ao_title>
+        <options>
+          <button onclick="var ao_snip = document.querySelector('ao_snippets'); ao_snip.classList.toggle('dockerized'); ao_snip.classList.remove('maximized');">_</button>
+          <button onclick="var ao_snip = document.querySelector('ao_snippets'); ao_snip.classList.toggle('maximized'); ao_snip.classList.remove('dockerized');">M</button>
+          <button>X</button>
+        </options>
+      </ao_header>
+
+      <ao_content>
+        <div id="files">
+            <h2>Snippets List:</h2>
+            <ul id="file-list"></ul>
+        </div>
+
+        <form action="#" method="POST" id="file-form">
+            <div class="field">
+            <input
+                type="text"
+                name="filename"
+                id="filename"
+                placeholder="Filename (e.g. treehouse.txt)"
+            />
+            </div>
+            <div class="field flexit">
+            <textarea
+                name="content"
+                id="content"
+                placeholder="Type your content here..."
+            ></textarea>
+            </div>
+            <div class="field">
+            <button type="submit">Save File</button>
+            <button id="tryItOutBtn">Try in LiveExplorer</button>
+            <div id="messages"></div>
+            </div>
+        </form>
+        
+      <editor_side>
+        <pre contenteditable="true">
+    var app = {
+        elemQueSel : "render_side",
+        elem : "",
+        appInfo : {
+            title: "DemoAppYES",
+            description: "Random info to fill space",
+            url: "https://codepen.io/your-work"
+        },
+        func: {
+            init(){
+            console.warn("APP.FUNC.INIT() :: I am starting this mess!");
+            app.elem = document.querySelector(app.elemQueSel);
+            app.elem.innerHTML = JSON.stringify(app.appInfo);
+    
+            app.elem.style.background = "rgba(255,255,255,.1)";
+            app.elem.style.margin = "1em";
+            app.elem.style.padding = "1em";
+    
+            app.func.eventListeners()
+            },
+            afterInit(){
+            console.log("APP.FUNC.AFTERINIT() -> Just testing this one out...nothing special.")
+            },
+            eventListeners(){
+            console.log("APP.FUNC.EVENTLISTENERS() -> Adding these from here.")
+            app.elem.addEventListener('mouseover', function(){
+                console.log("app.elem -> mouseover");
+            });
+    
+            app.elem.addEventListener('mouseenter', function(){
+                console.log("app.elem -> mouseenter");
+            });
+    
+            app.elem.addEventListener('mouseleave', function(){
+                console.log("app.elem -> mouseleave");
+            });
+    
+            app.elem.onclick = function() {
+                console.log("[ app.elem.onclick -> function() ]");
+                app.func.afterInit();
+            }
+            }
+        }
+        }
+    
+        app.func.init();
+          
+          </pre
+        >
+        <button id="downloadCodeButton">DownloadCode</button>
+      </editor_side>
+      <render_side> </render_side>
+      </ao_content>
+
+      <ao_footer>
+          Just a spaceholder... more info in git...or on email...slavko.vuletic92@gmai.com
+      </ao_footer>
+    </ao_snippets>
+    <script src="/ao_snippets_v.2_.js"></script>
+
+    <script src='https://unpkg.com/trianglify@^4/dist/trianglify.bundle.js'></script>
+    <script>
+
+      var fillRnd = 0;
+      var strokeSetRnd = 0;
+
+      if ( Math.floor( Math.random() * 2 ) == 1 ){ 
+        fillRnd = true;
+        strokeSetRnd = parseInt( Math.floor( Math.random() * 31 ) );
+      };
+
+      const pattern = trianglify({
+        width: window.innerWidth,
+        height: window.innerHeight,
+        cellSize: parseInt( Math.round( window.innerHeight/15 ) ),
+        variance: 0.75,
+        strokeWidth: strokeSetRnd,
+        fill: fillRnd
+      });
+
+      var bckgElem = document.createElement("div");
+      bckgElem.setAttribute("id","ao_root_background")
+      bckgElem.appendChild(pattern.toCanvas())
+      document.body.appendChild(bckgElem)
+
+    </script> 
+  </body>
+</html>
