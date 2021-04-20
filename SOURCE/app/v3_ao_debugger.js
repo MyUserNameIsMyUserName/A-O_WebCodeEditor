@@ -46,7 +46,7 @@ var debug = {
         render(){
             console.log("Debugger >> RENDER()");
             (debug.data.logList).forEach(element => {
-                debug.elem.innerHTML += "<consoleLogItem "+element.type+" style='border:1px solid orange; margin: 5px;display: flex; flex-direction: column;'><msg>MSG: "+element.msg+"</msg><time>"+element.date+"</time></consoleLogItem>"
+                debug.elem.innerHTML += "<console_Log_Item "+element.type+" style='border:1px solid orange; margin: 5px;display: flex; flex-direction: column;'><msg>MSG: "+element.msg+"</msg><time>"+element.date+"</time></console_Log_Item>"
             });
         }
     },
