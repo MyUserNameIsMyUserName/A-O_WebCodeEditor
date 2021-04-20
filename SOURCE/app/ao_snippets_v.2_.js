@@ -166,6 +166,13 @@ function loadFile(filename) {
           // Update the form fields.
           filenameInput.value = filename;
           contentTextArea.value = this.result;
+
+          var helper = filename.split('.');
+          if (helper[1] == "js"){
+            document.getElementById("tryItOutBtn").disabled = false;
+          } else {
+            document.getElementById("tryItOutBtn").disabled = true;
+          }
         };
 
         reader.readAsText(file);
@@ -313,6 +320,6 @@ if (window.requestFileSystem) {
 appRenderer.func.init();
 
 window.onload = function () {
-  hljs.highlightElement(appRenderer.conf.inputElem);
   console.log("YEAA HAVING FUN! :D");
+  hljs.highlightElement(appRenderer.conf.inputElem);
 };
