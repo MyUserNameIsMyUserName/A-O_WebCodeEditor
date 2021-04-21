@@ -16,17 +16,14 @@ var AO_Engine = {
         origin: "localhost",
         port: "8080"
     },
-    apps: {
-        
-    },
     func: {
         render(){
             var ao = AO_Engine;
             if (ao.conf.debug){
-                console.log('[ Func_call >> AO_Engine.func.render() ]')
+                console.warn("Welcome to AO_APP_ENGINE. Hope you have fun!");
+                console.error('[ Func_call >> AO_Engine.func.render() ]')
                 console.trace();
-                console.log(this);
-                console.log(ao);
+                console.info(ao);
             }
         },
         loadApp(appURL){
@@ -42,29 +39,15 @@ var AO_Engine = {
     },
     init() {
         if (this.conf.debug){
-            console.warn('Welcome to AO_APP_ENGINE. Hope you have fun!')
             this.func.loadApp('/v3_ao_debugger.js');
-            //this.apps.debug.init();
-            //this.apps.debug.func.log('Some Init Message to test this.')
-        /*    this.apps.debug = {
-                info : {
-                    name: "AO_Engine.app.debug",
-                    desc: "Some space for description"
-                },
-                conf: {
-                    execTime: true,
-                    network: true
-                },
-                data: {},
-                func: {
-                    log(msg = null){
-                        console.log(msg);
-                    }
-                }
-            } */
         };
         this.elem = document.querySelector(this.selector) || document.body;
-        this.func.render();
+
+        window.debugStarted = function(){
+            console.log("SO >> window.debugStarted()");
+            ao.func.render();
+            console.warn("EO >> window.debugStarted() ");
+        }
     }
 }
 

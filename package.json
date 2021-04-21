@@ -10,7 +10,7 @@
     "_build": "bash ao_builder/build.sh ",
     "_build_dev": "bash ao_builder/build.sh dev",
     "_build_and_serve": "npm run _build && npm run _serve ",
-    "_serve": "start node default.server.js",
+    "_serve": "start bash -c 'node default.server.js' ",
     "in_": "npm run _install",
     "uni_": "npm run _uninstall",
     "b_": "npm run _build",

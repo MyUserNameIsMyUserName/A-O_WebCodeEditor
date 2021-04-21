@@ -23,3 +23,30 @@ body {
   flex: 1;
   margin: 0;
 }
+
+.error {
+  color: red;
+  border: 1px solid;
+}
+
+.info {
+  color: #03a9f4;
+  border: 1px solid ;
+}
+
+.warn {
+  color: orange;
+  border: 1px solid ;
+}
+
+.null {
+  color: dimgrey;
+  border: 1px solid ;
+}
+
+console_log_item {
+  padding: 0.5em 1em;
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+}
