@@ -24,7 +24,6 @@ app.use(express.static(STATIC));
 
 // All GET request handled by INDEX file
 app.get("*", function (req, res) {
-    req.headers["Bypass-Tunnel-Reminder"] = "YEAdoIT";
     res.sendFile(INDEX);
 });
 

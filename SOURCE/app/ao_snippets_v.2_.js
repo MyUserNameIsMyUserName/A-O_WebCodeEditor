@@ -26,18 +26,23 @@ var appRenderer = {
   func: {
     init() {
       console.log("[ appRenderer.func.init() ]");
-      appRenderer.conf.inputElem = document.querySelector(
-        appRenderer.conf.inputElemSel
-      );
+      
+      appRenderer.conf.inputElem = document.querySelector(appRenderer.conf.inputElemSel);
+
       appRenderer.func.getApplication();
+
       appRenderer.conf.inputElem.oninput = function () {
+        //hljs.highlightElement(appRenderer.conf.inputElem);
         appRenderer.func.getApplication();
       };
+
       document.getElementById("downloadCodeButton").onclick = function () {
         console.log("[ downloadCodeButton .onclick -> function() ]");
         appRenderer.func.downloadCode();
       };
+
     },
+
     getApplication() {
       var stringJS = appRenderer.conf.inputElem.innerText;
 
@@ -102,9 +107,13 @@ var messageBox = document.getElementById("messages");
 
 // A simple error handler to be used throughout this demo.
 function errorHandler(error) {
+  console.info(error.code);
   var message = "";
 
   switch (error.code) {
+    case 18:
+      message = "Security Error";
+      break;
     case FileError.SECURITY_ERR:
       message = "Security Error";
       break;
@@ -166,6 +175,13 @@ function loadFile(filename) {
           // Update the form fields.
           filenameInput.value = filename;
           contentTextArea.value = this.result;
+
+          var event = new Event('input', {
+              bubbles: true,
+              cancelable: true,
+          });
+          
+          contentTextArea.dispatchEvent(event);
         };
 
         reader.readAsText(file);
